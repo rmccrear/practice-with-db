@@ -1,26 +1,31 @@
 import { useState, useEffect } from 'react'
-import supabase from '../utils/supabase'
+import supabase from './utils/supabase'
 
 function Page() {
-  const [todos, setTodos] = useState([])
+  const [employees, setEmployees] = useState([])
 
   useEffect(() => {
-    async function getTodos() {
-      const { data: todos } = await supabase.from('todos').select()
+    async function getEmployees() {
+      const { data } = await supabase.from('employees').select()
 
-      if (todos.length > 1) {
-        setTodos(todos)
+      if (data.length > 1) {
+        setEmployees(data)
       }
     }
 
-    getTodos()
+    getEmployees()
   }, [])
 
   return (
     <div>
-      {todos.map((todo) => (
-        <li key={todo}>{todo}</li>
-      ))}
+      <ul>
+        {employees.map((employee) => (
+          <li key={employee.id}>
+            {employee.first_name} | Favorite Ice Cream: {" "}
+            {employee.fav_ice_cream}
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }
