@@ -22,7 +22,7 @@ This is a step-by-step tutorial project that shows how to:
 
 1. First create your database and add a table called potluck_meals. The table should meals for a potluck. Use columns like "meal_name", "guest_name", "serves", "kind_of_dish" with examples like "Meatloaf", "Bill", 7, "entree" for a meatloaf brought by Bill that serves 7 people.
 
-2. Next create at least 3 meals to bring in Supabase. [example screenshot(./docs/00-screenshot-list-meals-db-table.png)
+2. Next create at least 3 meals to bring in Supabase. [example screenshot](./docs/00-screenshot-list-meals-db-table.png)
 
 3. Set RLS Policy for your table to allow "read access for all users"
 
@@ -33,4 +33,5 @@ This is a step-by-step tutorial project that shows how to:
     * add the event listener
     * add a custom RLS Policy to allow inserts from public [example screenshot](./docs/03-screenshot-custom-rls-policy.png) [potential error](./docs/04-screenshot-potential-rls-error.png)
     * insert the meal and verify in supabase [example screenshot](./docs/05-screenshot-verify-insert.png)
-    * 
+    * Update the list with a select statement [example screenshot](./docs/06-display-meals-after-submit.png)
+    

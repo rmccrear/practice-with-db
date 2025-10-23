@@ -32,6 +32,9 @@ export default function PotluckMeals() {
         }
         console.log(newMeal)
         await supabase.from("potluck_meals").insert(newMeal)
+        const response = await supabase.from("potluck_meals").select()
+        const data = response.data
+        setMeals(data)
     }
 
 
@@ -46,15 +49,19 @@ export default function PotluckMeals() {
                 <label>
                     Meal: <input type="text" name="mealName" />
                 </label>
+                <br/>
                 <label>
                     Guest: <input type="text" name="guestName" />
                 </label>
+                <br/>
                 <label>
                     Serves: <input type="number" name="serves" />
                 </label>
+                <br/>
                 <label>
                     Kind of Dish (entree, side, snack): <input type="text" name="kindOfDish" />
                 </label>
+                <br/>
                 <button type="submit">Add Meal</button>
             </form>
         </div>
