@@ -76,9 +76,9 @@ practice-with-db/
    - [Configure Row Level Security policies](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_SETUP_GUIDE.html#step-10-set-up-read-policy-allow-public-read-access)
 
 2. **React Integration**: Follow the [Supabase React Setup Guide](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_REACT_SETUP_GUIDE.html) to:
-   - [Configure environment variables](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_REACT_SETUP_GUIDE.html#environment-variables)
-   - [Set up the Supabase client](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_REACT_SETUP_GUIDE.html#supabase-client)
-   - [Connect your React app to the database](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_REACT_SETUP_GUIDE.html#connect-to-database)
+   - Configure environment variables
+   - Set up the Supabase client
+   - Connect your React app to the database
 
 **For this potluck app, make sure to:**
 
