@@ -2,7 +2,7 @@
 
 This comprehensive guide will walk you through building a React application with Supabase database integration. You'll create a potluck meal management app that demonstrates CRUD operations, form handling, and database security policies.
 
-**Project Structure**: This guide includes required steps (Steps 1-18) and optional bonus challenges. You must complete all required steps, then choose at least 2 bonus challenges to complete. Note: Step 16 is marked as a challenge but is positioned in the required flow.
+**Project Structure**: This guide includes required steps (Steps 1-19) and optional bonus challenges. You must complete all required steps, then choose at least 2 bonus challenges to complete. Note: Step 17 is marked as a challenge but is positioned in the required flow.
 
 ## Table of Contents
 1. [Project Setup](#project-setup)
@@ -306,6 +306,41 @@ async function handleAddMeal(event){
     
     // Insert the new meal
     await supabase.from("potluck_meals").insert(newMeal)
+}
+```
+
+### Step 14: Test Insert and Verify in Supabase Dashboard
+
+1. Fill out the form with new meal data
+2. Submit the form
+3. Check your Supabase dashboard to verify the meal was inserted
+
+**Screenshot Reference:** ![Verify insert in Supabase](./docs/05-screenshot-verify-insert.png)
+
+### Step 15: Select Data Back Out and Update List
+
+Update your `handleAddMeal` function to refresh the meals list after inserting:
+
+```javascript
+async function handleAddMeal(event){
+    event.preventDefault()
+    console.log("handle add meal submitted")
+    const mealName = event.target.elements.mealName.value
+    const guestName = event.target.elements.guestName.value
+    const serves = event.target.elements.serves.value
+    const kindOfDish = event.target.elements.kindOfDish.value
+    
+    const newMeal = {
+        meal_name: mealName,
+        guest_name: guestName,
+        serves: parseInt(serves),
+        kind_of_dish: kindOfDish
+    }
+    
+    console.log(newMeal)
+    
+    // Insert the new meal
+    await supabase.from("potluck_meals").insert(newMeal)
     
     // Refresh the meals list
     const response = await supabase.from("potluck_meals").select()
@@ -314,17 +349,9 @@ async function handleAddMeal(event){
 }
 ```
 
-### Step 14: Test Insert and Verify in Supabase
-
-1. Fill out the form with new meal data
-2. Submit the form
-3. Verify the meal appears in your Supabase dashboard
-
-**Screenshot Reference:** ![Verify insert in Supabase](./docs/05-screenshot-verify-insert.png)
-
 **Screenshot Reference:** ![Display meals after submit](./docs/06-display-meals-after-submit.png)
 
-### Step 15: Clear Inputs After Submit
+### Step 16: Clear Inputs After Submit
 
 Update your `handleAddMeal` function to clear the form after submission:
 
@@ -368,7 +395,7 @@ async function handleAddMeal(event){
 
 ## Form Enhancement
 
-### Step 16: Add Select Dropdown (Challenge)
+### Step 17: Add Select Dropdown (Challenge)
 
 **🎯 Challenge**: Use option/select tags for the enumerated kinds of dish (entree, side, snack, etc.) instead of a text input.
 
@@ -394,7 +421,7 @@ Replace the text input for "Kind of Dish" with a select dropdown:
 
 ## Additional Required Components
 
-### Step 17: Create Beverages Table and Component
+### Step 18: Create Beverages Table and Component
 
 Create another table and component for Beverages following the same pattern as meals:
 
@@ -403,7 +430,7 @@ Create another table and component for Beverages following the same pattern as m
 3. Create a `Beverages.jsx` component following the same pattern as `PotluckMeals.jsx`
 4. Import and display the Beverages component in your App.jsx
 
-### Step 18: Create Utensils Table and Component
+### Step 19: Create Utensils Table and Component
 
 Create a table and component for Utensils (paper plates, plastic cups, etc.):
 
