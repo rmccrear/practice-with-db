@@ -29,3 +29,8 @@ This is a step-by-step tutorial project that shows how to:
 4. Next, Create a component for PotluckMeals that shows all the dishes that your guests will bring. This will be imported into your App.jsx file and displayed there. [example screenshot](./docs/01-screenshot-list-meals.png)
 
 5. Next, Create a form for a new meal, and insert an object into your database. 
+    * add the form [example screenshot](./docs/02-screenshot-form.png)
+    * add the event listener
+    * add a custom RLS Policy to allow inserts from public [example screenshot](./docs/03-screenshot-custom-rls-policy.png) [potential error](./docs/04-screenshot-potential-rls-error.png)
+    * insert the meal and verify in supabase [example screenshot](./docs/05-screenshot-verify-insert.png)
+    * 

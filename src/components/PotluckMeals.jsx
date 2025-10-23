@@ -17,7 +17,7 @@ export default function PotluckMeals() {
         mealsDisplay.push(<li key={meals[i].id}> {meals[i].meal_name} by {meals[i].guest_name} serves {meals[i].serves} ( {meals[i].kind_of_dish} ) </li>)
     }
 
-    function handleAddMeal(event){
+    async function handleAddMeal(event){
         event.preventDefault()
         console.log("handle add meal submitted")
         const mealName = event.target.elements.mealName.value
@@ -31,6 +31,7 @@ export default function PotluckMeals() {
             kind_of_dish: kindOfDish
         }
         console.log(newMeal)
+        await supabase.from("potluck_meals").insert(newMeal)
     }
 
 
