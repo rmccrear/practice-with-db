@@ -2,7 +2,7 @@
 
 This comprehensive guide will walk you through building a React application with Supabase database integration. You'll create a potluck meal management app that demonstrates CRUD operations, form handling, and database security policies.
 
-**Project Structure**: This guide includes required steps (Steps 1-17) and optional bonus challenges. You must complete all required steps, then choose at least 2 bonus challenges to complete. Note: Step 15 is marked as a challenge but is positioned in the required flow.
+**Project Structure**: This guide includes required steps (Steps 1-18) and optional bonus challenges. You must complete all required steps, then choose at least 2 bonus challenges to complete. Note: Step 16 is marked as a challenge but is positioned in the required flow.
 
 ## Table of Contents
 1. [Project Setup](#project-setup)
@@ -96,7 +96,7 @@ practice-with-db/
 
 ## Basic Data Display
 
-### Step 5: Create Basic PotluckMeals Component
+### Step 5: Create PotluckMeals Component and Import to App
 
 Create `src/components/PotluckMeals.jsx` with basic structure:
 
@@ -117,43 +117,7 @@ export default function PotluckMeals() {
 }
 ```
 
-### Step 6: Add Fetch Functionality
-
-Add the fetch meals function and display logic:
-
-```javascript
-async function handleFetchMeals() {
-    const result = await supabase.from("potluck_meals").select()
-    const data = result.data
-    console.log(data);
-    setMeals(data);
-}
-
-const mealsDisplay = []
-for (let i = 0; i < meals.length; i++) {
-    mealsDisplay.push(
-        <li key={meals[i].id}> 
-            {meals[i].meal_name} by {meals[i].guest_name} serves {meals[i].serves} ( {meals[i].kind_of_dish} ) 
-        </li>
-    )
-}
-```
-
-Update the button to call the function:
-
-```javascript
-<button onClick={handleFetchMeals}>Fetch Meals</button>
-```
-
-And display the meals:
-
-```javascript
-<ul>
-    {mealsDisplay}
-</ul>
-```
-
-### Step 7: Import Component in App.jsx
+**Immediately import the component into App.jsx:**
 
 Update `src/App.jsx`:
 
@@ -169,7 +133,61 @@ function App() {
 export default App
 ```
 
-### Step 8: Test Data Fetching
+### Step 6: Create Button and Handler (Console Log)
+
+Add the fetch meals function with console logging:
+
+```javascript
+async function handleFetchMeals() {
+    console.log("Fetching meals...")
+    // We'll add the actual fetch logic in the next step
+}
+```
+
+Update the button to call the function:
+
+```javascript
+<button onClick={handleFetchMeals}>Fetch Meals</button>
+```
+
+### Step 7: Select Data and Console Log
+
+Update the `handleFetchMeals` function to fetch data from Supabase:
+
+```javascript
+async function handleFetchMeals() {
+    console.log("Fetching meals...")
+    const result = await supabase.from("potluck_meals").select()
+    const data = result.data
+    console.log("Fetched data:", data);
+    setMeals(data);
+}
+```
+
+### Step 8: Display Data with For Loop
+
+Add the display logic using a for loop:
+
+```javascript
+const mealsDisplay = []
+for (let i = 0; i < meals.length; i++) {
+    mealsDisplay.push(
+        <li key={meals[i].id}> 
+            {meals[i].meal_name} by {meals[i].guest_name} serves {meals[i].serves} ( {meals[i].kind_of_dish} ) 
+        </li>
+    )
+}
+```
+
+And display the meals:
+
+```javascript
+<ul>
+    {mealsDisplay}
+</ul>
+```
+
+### Step 9: Test Data Fetching
 
 1. Run your development server: `npm run dev`
 2. Click the "Fetch Meals" button
@@ -181,7 +199,7 @@ export default App
 
 ## Form Implementation and Data Insertion
 
-### Step 9: Add Form Structure
+### Step 10: Add Form Structure
 
 Add a form to your `PotluckMeals` component:
 
@@ -212,7 +230,7 @@ Add a form to your `PotluckMeals` component:
 
 **Screenshot Reference:** ![Form added](./docs/02-screenshot-form.png)
 
-### Step 10: Add Event Handler
+### Step 11: Add Event Handler
 
 Add the `handleAddMeal` function to your component:
 
@@ -237,7 +255,7 @@ async function handleAddMeal(event){
 }
 ```
 
-### Step 11: Create Insert RLS Policy
+### Step 12: Create Insert RLS Policy
 
 Follow the [Supabase Setup Guide - Step 11](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_SETUP_GUIDE.html#step-11-set-up-write-policy-allow-public-write-access) to set up a write policy for your `potluck_meals` table.
 
@@ -264,7 +282,7 @@ This allows anyone to **create** new rows in your table.
 
 **Screenshot Reference:** ![Potential RLS error](./docs/04-screenshot-potential-rls-error.png)
 
-### Step 12: Add Insert Statement
+### Step 13: Add Insert Statement
 
 Update your `handleAddMeal` function to include the insert logic:
 
@@ -296,7 +314,7 @@ async function handleAddMeal(event){
 }
 ```
 
-### Step 13: Test Insert and Verify in Supabase
+### Step 14: Test Insert and Verify in Supabase
 
 1. Fill out the form with new meal data
 2. Submit the form
@@ -306,7 +324,7 @@ async function handleAddMeal(event){
 
 **Screenshot Reference:** ![Display meals after submit](./docs/06-display-meals-after-submit.png)
 
-### Step 14: Clear Inputs After Submit
+### Step 15: Clear Inputs After Submit
 
 Update your `handleAddMeal` function to clear the form after submission:
 
@@ -350,7 +368,7 @@ async function handleAddMeal(event){
 
 ## Form Enhancement
 
-### Step 15: Add Select Dropdown (Challenge)
+### Step 16: Add Select Dropdown (Challenge)
 
 **🎯 Challenge**: Use option/select tags for the enumerated kinds of dish (entree, side, snack, etc.) instead of a text input.
 
@@ -376,7 +394,7 @@ Replace the text input for "Kind of Dish" with a select dropdown:
 
 ## Additional Required Components
 
-### Step 16: Create Beverages Table and Component
+### Step 17: Create Beverages Table and Component
 
 Create another table and component for Beverages following the same pattern as meals:
 
@@ -385,7 +403,7 @@ Create another table and component for Beverages following the same pattern as m
 3. Create a `Beverages.jsx` component following the same pattern as `PotluckMeals.jsx`
 4. Import and display the Beverages component in your App.jsx
 
-### Step 17: Create Utensils Table and Component
+### Step 18: Create Utensils Table and Component
 
 Create a table and component for Utensils (paper plates, plastic cups, etc.):
 
