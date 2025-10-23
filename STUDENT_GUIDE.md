@@ -8,11 +8,10 @@ This comprehensive guide will walk you through building a React application with
 1. [Project Setup](#project-setup)
 2. [Database Setup](#database-setup)
 3. [Basic Data Display](#basic-data-display)
-4. [Form Implementation](#form-implementation)
-5. [Data Insertion](#data-insertion)
-6. [Form Enhancement](#form-enhancement)
-7. [Additional Required Components](#additional-required-components)
-8. [Bonus Challenges](#bonus-challenges)
+4. [Form Implementation and Data Insertion](#form-implementation-and-data-insertion)
+5. [Form Enhancement](#form-enhancement)
+6. [Additional Required Components](#additional-required-components)
+7. [Bonus Challenges](#bonus-challenges)
 
 ---
 
@@ -180,7 +179,7 @@ export default App
 
 ---
 
-## Form Implementation
+## Form Implementation and Data Insertion
 
 ### Step 9: Add Form Structure
 
@@ -213,7 +212,7 @@ Add a form to your `PotluckMeals` component:
 
 **Screenshot Reference:** ![Form added](./docs/02-screenshot-form.png)
 
-### Step 10: Add Form Event Handler
+### Step 10: Add Event Handler
 
 Add the `handleAddMeal` function to your component:
 
@@ -238,10 +237,6 @@ async function handleAddMeal(event){
 }
 ```
 
----
-
-## Data Insertion
-
 ### Step 11: Create Insert RLS Policy
 
 In your Supabase SQL Editor, add an insert policy:
@@ -257,9 +252,9 @@ FOR INSERT WITH CHECK (true);
 
 **Screenshot Reference:** ![Potential RLS error](./docs/04-screenshot-potential-rls-error.png)
 
-### Step 12: Implement Insert Functionality
+### Step 12: Add Insert Statement
 
-Update your `handleAddMeal` function:
+Update your `handleAddMeal` function to include the insert logic:
 
 ```javascript
 async function handleAddMeal(event){
@@ -289,7 +284,7 @@ async function handleAddMeal(event){
 }
 ```
 
-### Step 13: Test Insert Functionality
+### Step 13: Test Insert and Verify in Supabase
 
 1. Fill out the form with new meal data
 2. Submit the form
@@ -299,7 +294,7 @@ async function handleAddMeal(event){
 
 **Screenshot Reference:** ![Display meals after submit](./docs/06-display-meals-after-submit.png)
 
-### Step 14: Clear Form Inputs
+### Step 14: Clear Inputs After Submit
 
 Update your `handleAddMeal` function to clear the form after submission:
 
