@@ -2,7 +2,7 @@
 
 This comprehensive guide will walk you through building a React application with Supabase database integration. You'll create a potluck meal management app that demonstrates CRUD operations, form handling, and database security policies.
 
-**Project Structure**: This guide includes required steps (Steps 1-16) and optional bonus challenges. You must complete all required steps, then choose at least 2 bonus challenges to complete. Note: Step 14 is marked as a challenge but is positioned in the required flow.
+**Project Structure**: This guide includes required steps (Steps 1-17) and optional bonus challenges. You must complete all required steps, then choose at least 2 bonus challenges to complete. Note: Step 15 is marked as a challenge but is positioned in the required flow.
 
 ## Table of Contents
 1. [Project Setup](#project-setup)
@@ -97,9 +97,9 @@ practice-with-db/
 
 ## Basic Data Display
 
-### Step 5: Create PotluckMeals Component
+### Step 5: Create Basic PotluckMeals Component
 
-Create `src/components/PotluckMeals.jsx`:
+Create `src/components/PotluckMeals.jsx` with basic structure:
 
 ```javascript
 import { useState } from "react"
@@ -108,33 +108,53 @@ import supabase from "../utils/supabase"
 export default function PotluckMeals() {
     const [meals, setMeals] = useState([])
 
-    async function handleFetchMeals() {
-        const result = await supabase.from("potluck_meals").select()
-        const data = result.data
-        console.log(data);
-        setMeals(data);
-    }
-
-    const mealsDisplay = []
-    for (let i = 0; i < meals.length; i++) {
-        mealsDisplay.push(
-            <li key={meals[i].id}> 
-                {meals[i].meal_name} by {meals[i].guest_name} serves {meals[i].serves} ( {meals[i].kind_of_dish} ) 
-            </li>
-        )
-    }
-
     return <>
         <h1>Potluck meals</h1>
-        <button onClick={handleFetchMeals}>Fetch Meals</button>
+        <button>Fetch Meals</button>
         <ul>
-            {mealsDisplay}
+            {/* Meals will be displayed here */}
         </ul>
     </>
 }
 ```
 
-### Step 6: Import Component in App.jsx
+### Step 6: Add Fetch Functionality
+
+Add the fetch meals function and display logic:
+
+```javascript
+async function handleFetchMeals() {
+    const result = await supabase.from("potluck_meals").select()
+    const data = result.data
+    console.log(data);
+    setMeals(data);
+}
+
+const mealsDisplay = []
+for (let i = 0; i < meals.length; i++) {
+    mealsDisplay.push(
+        <li key={meals[i].id}> 
+            {meals[i].meal_name} by {meals[i].guest_name} serves {meals[i].serves} ( {meals[i].kind_of_dish} ) 
+        </li>
+    )
+}
+```
+
+Update the button to call the function:
+
+```javascript
+<button onClick={handleFetchMeals}>Fetch Meals</button>
+```
+
+And display the meals:
+
+```javascript
+<ul>
+    {mealsDisplay}
+</ul>
+```
+
+### Step 7: Import Component in App.jsx
 
 Update `src/App.jsx`:
 
@@ -150,7 +170,7 @@ function App() {
 export default App
 ```
 
-### Step 7: Test Data Fetching
+### Step 8: Test Data Fetching
 
 1. Run your development server: `npm run dev`
 2. Click the "Fetch Meals" button
@@ -162,7 +182,7 @@ export default App
 
 ## Form Implementation
 
-### Step 8: Add Form Structure
+### Step 9: Add Form Structure
 
 Add a form to your `PotluckMeals` component:
 
@@ -193,7 +213,7 @@ Add a form to your `PotluckMeals` component:
 
 **Screenshot Reference:** ![Form added](./docs/02-screenshot-form.png)
 
-### Step 9: Add Form Event Handler
+### Step 10: Add Form Event Handler
 
 Add the `handleAddMeal` function to your component:
 
@@ -222,7 +242,7 @@ async function handleAddMeal(event){
 
 ## Data Insertion
 
-### Step 10: Create Insert RLS Policy
+### Step 11: Create Insert RLS Policy
 
 In your Supabase SQL Editor, add an insert policy:
 
@@ -237,7 +257,7 @@ FOR INSERT WITH CHECK (true);
 
 **Screenshot Reference:** ![Potential RLS error](./docs/04-screenshot-potential-rls-error.png)
 
-### Step 11: Implement Insert Functionality
+### Step 12: Implement Insert Functionality
 
 Update your `handleAddMeal` function:
 
@@ -269,7 +289,7 @@ async function handleAddMeal(event){
 }
 ```
 
-### Step 12: Test Insert Functionality
+### Step 13: Test Insert Functionality
 
 1. Fill out the form with new meal data
 2. Submit the form
@@ -279,7 +299,7 @@ async function handleAddMeal(event){
 
 **Screenshot Reference:** ![Display meals after submit](./docs/06-display-meals-after-submit.png)
 
-### Step 13: Clear Form Inputs
+### Step 14: Clear Form Inputs
 
 Update your `handleAddMeal` function to clear the form after submission:
 
@@ -323,7 +343,7 @@ async function handleAddMeal(event){
 
 ## Form Enhancement
 
-### Step 14: Add Select Dropdown (Challenge)
+### Step 15: Add Select Dropdown (Challenge)
 
 **🎯 Challenge**: Use option/select tags for the enumerated kinds of dish (entree, side, snack, etc.) instead of a text input.
 
@@ -349,7 +369,7 @@ Replace the text input for "Kind of Dish" with a select dropdown:
 
 ## Additional Required Components
 
-### Step 15: Create Beverages Table and Component
+### Step 16: Create Beverages Table and Component
 
 Create another table and component for Beverages following the same pattern as meals:
 
@@ -358,7 +378,7 @@ Create another table and component for Beverages following the same pattern as m
 3. Create a `Beverages.jsx` component following the same pattern as `PotluckMeals.jsx`
 4. Import and display the Beverages component in your App.jsx
 
-### Step 16: Create Utensils Table and Component
+### Step 17: Create Utensils Table and Component
 
 Create a table and component for Utensils (paper plates, plastic cups, etc.):
 
