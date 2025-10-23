@@ -2,15 +2,28 @@
 
 This comprehensive guide will walk you through building a React application with Supabase database integration. You'll create a potluck meal management app that demonstrates CRUD operations, form handling, and database security policies.
 
+**Project Structure**: This guide includes required steps (Steps 1-16) and optional bonus challenges. You must complete all required steps, then choose at least 2 bonus challenges to complete. Note: Step 14 is marked as a challenge but is positioned in the required flow.
+
 ## Table of Contents
 1. [Project Setup](#project-setup)
 2. [Database Setup](#database-setup)
-3. [Supabase Integration](#supabase-integration)
-4. [Basic Data Display](#basic-data-display)
-5. [Form Implementation](#form-implementation)
-6. [Data Insertion](#data-insertion)
-7. [Form Enhancement](#form-enhancement)
+3. [Basic Data Display](#basic-data-display)
+4. [Form Implementation](#form-implementation)
+5. [Data Insertion](#data-insertion)
+6. [Form Enhancement](#form-enhancement)
+7. [Additional Required Components](#additional-required-components)
 8. [Bonus Challenges](#bonus-challenges)
+
+---
+
+## Prerequisites
+
+Before starting this project, make sure you have:
+
+- Node.js (Latest LTS version recommended)
+- npm or yarn
+- Basic understanding of React (components, state, forms)
+- **Important**: Complete the [Supabase Setup Guide](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_SETUP_GUIDE.html) and [Supabase React Setup Guide](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_REACT_SETUP_GUIDE.html) before starting this project
 
 ---
 
@@ -54,88 +67,37 @@ practice-with-db/
 
 ## Database Setup
 
-### Step 4: Create Supabase Project
+### Step 4: Set Up Supabase Database
 
-1. Go to [supabase.com](https://supabase.com) and create a new account
-2. Create a new project
-3. Note down your project URL and anon key from Settings > API
+**Follow the detailed setup guides to configure your Supabase database:**
 
-### Step 5: Create Database Table
+1. **Database Setup**: Follow the [Supabase Setup Guide](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_SETUP_GUIDE.html) to:
+   - Create your Supabase account and project
+   - Set up your database table
+   - Configure Row Level Security policies
 
-In your Supabase SQL Editor, run this query to create the `potluck_meals` table:
+2. **React Integration**: Follow the [Supabase React Setup Guide](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_REACT_SETUP_GUIDE.html) to:
+   - Configure environment variables
+   - Set up the Supabase client
+   - Connect your React app to the database
 
-```sql
-CREATE TABLE potluck_meals (
-  id BIGSERIAL PRIMARY KEY,
-  meal_name TEXT NOT NULL,
-  guest_name TEXT NOT NULL,
-  serves INTEGER NOT NULL,
-  kind_of_dish TEXT NOT NULL,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-```
+**For this potluck app, make sure to:**
 
-### Step 6: Insert Sample Data
-
-Add at least 3 sample meals to your table:
-
-```sql
-INSERT INTO potluck_meals (meal_name, guest_name, serves, kind_of_dish) VALUES
-('Meatloaf', 'Bill', 7, 'entree'),
-('Caesar Salad', 'Sarah', 4, 'side'),
-('Chocolate Cake', 'Mike', 8, 'dessert');
-```
+- Create a table named `potluck_meals` with these columns:
+  - `meal_name` (text)
+  - `guest_name` (text) 
+  - `serves` (integer)
+  - `kind_of_dish` (text)
+- Add at least 3 sample meals
+- Set up read and insert policies for public access
 
 **Screenshot Reference:** ![Sample data in database](./docs/00-screenshot-list-meals-db-table.png)
-
-### Step 7: Set Row Level Security (RLS) Policy
-
-Enable RLS and create a read policy:
-
-```sql
--- Enable RLS
-ALTER TABLE potluck_meals ENABLE ROW LEVEL SECURITY;
-
--- Create read policy for all users
-CREATE POLICY "Allow read access for all users" ON potluck_meals
-FOR SELECT USING (true);
-```
-
----
-
-## Supabase Integration
-
-### Step 8: Configure Environment Variables
-
-Create a `.env.local` file in your project root:
-
-```env
-VITE_SUPABASE_URL=your_supabase_project_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
-
-**Important:** Never commit this file to version control!
-
-### Step 9: Set Up Supabase Client
-
-Create `src/utils/supabase.js`:
-
-```javascript
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-export default supabase;
-```
 
 ---
 
 ## Basic Data Display
 
-### Step 10: Create PotluckMeals Component
+### Step 5: Create PotluckMeals Component
 
 Create `src/components/PotluckMeals.jsx`:
 
@@ -172,7 +134,7 @@ export default function PotluckMeals() {
 }
 ```
 
-### Step 11: Import Component in App.jsx
+### Step 6: Import Component in App.jsx
 
 Update `src/App.jsx`:
 
@@ -188,7 +150,7 @@ function App() {
 export default App
 ```
 
-### Step 12: Test Data Fetching
+### Step 7: Test Data Fetching
 
 1. Run your development server: `npm run dev`
 2. Click the "Fetch Meals" button
@@ -200,7 +162,7 @@ export default App
 
 ## Form Implementation
 
-### Step 13: Add Form Structure
+### Step 8: Add Form Structure
 
 Add a form to your `PotluckMeals` component:
 
@@ -231,7 +193,7 @@ Add a form to your `PotluckMeals` component:
 
 **Screenshot Reference:** ![Form added](./docs/02-screenshot-form.png)
 
-### Step 14: Add Form Event Handler
+### Step 9: Add Form Event Handler
 
 Add the `handleAddMeal` function to your component:
 
@@ -260,7 +222,7 @@ async function handleAddMeal(event){
 
 ## Data Insertion
 
-### Step 15: Create Insert RLS Policy
+### Step 10: Create Insert RLS Policy
 
 In your Supabase SQL Editor, add an insert policy:
 
@@ -275,7 +237,7 @@ FOR INSERT WITH CHECK (true);
 
 **Screenshot Reference:** ![Potential RLS error](./docs/04-screenshot-potential-rls-error.png)
 
-### Step 16: Implement Insert Functionality
+### Step 11: Implement Insert Functionality
 
 Update your `handleAddMeal` function:
 
@@ -307,7 +269,7 @@ async function handleAddMeal(event){
 }
 ```
 
-### Step 17: Test Insert Functionality
+### Step 12: Test Insert Functionality
 
 1. Fill out the form with new meal data
 2. Submit the form
@@ -317,7 +279,7 @@ async function handleAddMeal(event){
 
 **Screenshot Reference:** ![Display meals after submit](./docs/06-display-meals-after-submit.png)
 
-### Step 18: Clear Form Inputs
+### Step 13: Clear Form Inputs
 
 Update your `handleAddMeal` function to clear the form after submission:
 
@@ -361,7 +323,9 @@ async function handleAddMeal(event){
 
 ## Form Enhancement
 
-### Step 19: Add Select Dropdown
+### Step 14: Add Select Dropdown (Challenge)
+
+**🎯 Challenge**: Use option/select tags for the enumerated kinds of dish (entree, side, snack, etc.) instead of a text input.
 
 Replace the text input for "Kind of Dish" with a select dropdown:
 
@@ -383,33 +347,49 @@ Replace the text input for "Kind of Dish" with a select dropdown:
 
 ---
 
+## Additional Required Components
+
+### Step 15: Create Beverages Table and Component
+
+Create another table and component for Beverages following the same pattern as meals:
+
+1. Create a `beverages` table with appropriate columns (e.g., `beverage_name`, `guest_name`, `quantity`, `type_of_drink`)
+2. Set up RLS policies for read and insert access
+3. Create a `Beverages.jsx` component following the same pattern as `PotluckMeals.jsx`
+4. Import and display the Beverages component in your App.jsx
+
+### Step 16: Create Utensils Table and Component
+
+Create a table and component for Utensils (paper plates, plastic cups, etc.):
+
+1. Design your own columns for the utensils table (e.g., `item_name`, `guest_name`, `quantity`, `item_type`)
+2. Set up RLS policies for read and insert access
+3. Create a `Utensils.jsx` component following the same pattern
+4. Import and display the Utensils component in your App.jsx
+
+---
+
 ## Bonus Challenges
 
 Complete at least 2 of the following challenges:
 
-### Challenge 1: Beverages Table and Component
-Create a similar table and component for beverages following the same pattern as meals.
+### Challenge 1: Creative Table
+Create another table that you think would improve your app (e.g., dietary restrictions, allergies, etc.). Decide on the columns yourself.
 
-### Challenge 2: Utensils Table and Component
-Create a table for utensils (paper plates, plastic cups, etc.) and build a component to manage them.
-
-### Challenge 3: Creative Table
-Design your own table that would improve the potluck app (e.g., dietary restrictions, allergies, etc.).
-
-### Challenge 4: Styling
+### Challenge 2: Styling
 Style your app using CSS or Bootstrap to make it more visually appealing.
 
-### Challenge 5: Conditional Styling
+### Challenge 3: Conditional Styling
 Add conditional styling based on the type of dish or other data.
 
-### Challenge 6: Creative Display
+### Challenge 4: Creative Display
 Use elements other than `<li>` tags to display your items (cards, tables, etc.).
 
-### Challenge 7: Component Breakdown
+### Challenge 5: Component Breakdown
 Break your app into smaller, reusable components with props.
 
-### Challenge 8: File Upload
-Implement file upload functionality using Cloudinary or Supabase Storage.
+### Challenge 6: File Upload
+Have an option to upload a file. Consider using Cloudinary and an "upload url". This will take some research.
 
 ---
 
