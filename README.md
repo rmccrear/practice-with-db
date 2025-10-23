@@ -26,5 +26,5 @@ This is a step-by-step tutorial project that shows how to:
 
 3. Set RLS Policy for your table to allow "read access for all users"
 
-4. Next, Create a component for PotluckMeals that shows all the dishes that your guests will bring. This will be imported into your App.jsx file and displayed there.
+4. Next, Create a component for PotluckMeals that shows all the dishes that your guests will bring. This will be imported into your App.jsx file and displayed there. [example screenshot](./docs/01-screenshot-list-meals.png)
 
