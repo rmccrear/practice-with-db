@@ -24,5 +24,7 @@ This is a step-by-step tutorial project that shows how to:
 
 2. Next create at least 3 meals to bring in Supabase.
 
+3. Set RLS Policy for your table to allow "read access for all users"
+
 
 
