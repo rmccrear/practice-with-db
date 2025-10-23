@@ -35,6 +35,10 @@ export default function PotluckMeals() {
         const response = await supabase.from("potluck_meals").select()
         const data = response.data
         setMeals(data)
+        event.target.elements.mealName.value = ""
+        event.target.elements.guestName.value = ""
+        event.target.elements.serves.value = ""
+        event.target.elements.kindOfDish.value = ""
     }
 
 
