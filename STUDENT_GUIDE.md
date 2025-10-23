@@ -71,14 +71,14 @@ practice-with-db/
 **Follow the detailed setup guides to configure your Supabase database:**
 
 1. **Database Setup**: Follow the [Supabase Setup Guide](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_SETUP_GUIDE.html) to:
-   - Create your Supabase account and project
-   - Set up your database table
-   - Configure Row Level Security policies
+   - [Create your Supabase account and project](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_SETUP_GUIDE.html#step-1-create-your-supabase-account)
+   - [Set up your database table](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_SETUP_GUIDE.html#step-5-create-your-first-table)
+   - [Configure Row Level Security policies](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_SETUP_GUIDE.html#step-10-set-up-read-policy-allow-public-read-access)
 
 2. **React Integration**: Follow the [Supabase React Setup Guide](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_REACT_SETUP_GUIDE.html) to:
-   - Configure environment variables
-   - Set up the Supabase client
-   - Connect your React app to the database
+   - [Configure environment variables](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_REACT_SETUP_GUIDE.html#environment-variables)
+   - [Set up the Supabase client](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_REACT_SETUP_GUIDE.html#supabase-client)
+   - [Connect your React app to the database](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_REACT_SETUP_GUIDE.html#connect-to-database)
 
 **For this potluck app, make sure to:**
 
@@ -88,7 +88,7 @@ practice-with-db/
   - `serves` (integer)
   - `kind_of_dish` (text)
 - Add at least 3 sample meals
-- Set up read and insert policies for public access
+- Set up [read policies](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_SETUP_GUIDE.html#step-10-set-up-read-policy-allow-public-read-access) and [insert policies](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_SETUP_GUIDE.html#step-11-set-up-write-policy-allow-public-write-access) for public access
 
 **Screenshot Reference:** ![Sample data in database](./docs/00-screenshot-list-meals-db-table.png)
 
