@@ -35,3 +35,6 @@ This is a step-by-step tutorial project that shows how to:
     * insert the meal and verify in supabase [example screenshot](./docs/05-screenshot-verify-insert.png)
     * Update the list with a select statement [example screenshot](./docs/06-display-meals-after-submit.png)
     * clear the inputs after submit [example screenshot](./docs/07-screenshot-clear-inputs.png)
+
+6. Bonus Challenge: use option/select tags for the enumerated kinds of dish: (entree, side, snack, etc...)
+

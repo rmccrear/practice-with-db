@@ -63,7 +63,15 @@ export default function PotluckMeals() {
                 </label>
                 <br/>
                 <label>
-                    Kind of Dish (entree, side, snack): <input type="text" name="kindOfDish" />
+                    Kind of Dish:
+                    <select name="kindOfDish" defaultValue="">
+                        <option value="" disabled>Select a kind</option>
+                        <option value="entree">Entree</option>
+                        <option value="side">Side</option>
+                        <option value="snack">Snack</option>
+                        <option value="dessert">Dessert</option>
+                        <option value="drink">Drink</option>
+                    </select>
                 </label>
                 <br/>
                 <button type="submit">Add Meal</button>
