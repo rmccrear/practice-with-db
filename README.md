@@ -22,6 +22,8 @@ This is a step-by-step tutorial project that shows how to:
 
 1. First create your database and add a table called PotluckMeals. The table should meals for a potluck. Use columns like "meal_name", "guest_name", "serves", "kind_of_dish" with examples like "Meatloaf", "Bill", 7, "entree" for a meatloaf brought by Bill that serves 7 people.
 
+2. Next create at least 3 meals to bring in Supabase.
+
 
 
 
