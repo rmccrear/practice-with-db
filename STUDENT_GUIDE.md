@@ -239,12 +239,24 @@ async function handleAddMeal(event){
 
 ### Step 11: Create Insert RLS Policy
 
-In your Supabase SQL Editor, add an insert policy:
+Follow the [Supabase Setup Guide - Step 11](https://rmccrear.github.io/codex-lv3-may-2025/week5/supabase-setup/SUPABASE_SETUP_GUIDE.html#step-11-set-up-write-policy-allow-public-write-access) to set up a write policy for your `potluck_meals` table.
 
-```sql
-CREATE POLICY "Allow insert access for public" ON potluck_meals
-FOR INSERT WITH CHECK (true);
-```
+**Steps:**
+1. Click **"New Policy"** in your Supabase dashboard
+2. Give it a policy name (e.g., "Enable insert for all users")
+3. Select **"INSERT"** operation
+4. Add `true` to the **"with check"** statement in the policy
+5. Click **"Save"**
+
+This allows anyone to **create** new rows in your table.
+
+**🔒 Cybersecurity Reflection**: Think about this statement from a security perspective. What are the potential risks of allowing "anyone" to create new rows in your database? Consider:
+- What could happen if malicious users submit inappropriate data?
+- How might this policy affect data integrity?
+- What would be a more secure approach for a production application?
+- Why is this policy acceptable for learning projects but not for real applications?
+
+**Note**: This policy is intentionally permissive for learning purposes. In production applications, you would implement proper authentication and authorization controls.
 
 **Screenshot Reference:** ![RLS Policy for inserts](./docs/03-screenshot-custom-rls-policy.png)
 
