@@ -2,7 +2,7 @@
 
 This comprehensive guide will walk you through building a React application with Supabase database integration. You'll create a potluck meal management app that demonstrates CRUD operations, form handling, and database security policies.
 
-**Project Structure**: This guide includes required steps (Steps 1-19) and optional bonus challenges. You must complete all required steps, then choose at least 2 bonus challenges to complete. Note: Step 17 is marked as a challenge but is positioned in the required flow.
+**Project Structure**: This guide includes required steps (Steps 1-20) and optional bonus challenges. You must complete all required steps, then choose at least 2 bonus challenges to complete. Note: Step 18 is marked as a challenge but is positioned in the required flow.
 
 ## Table of Contents
 1. [Project Setup](#project-setup)
@@ -61,6 +61,49 @@ practice-with-db/
 ├── package.json
 └── README.md
 ```
+
+### Step 3: Create Basic README
+
+Create a simple `README.md` file in your project root to document your project:
+
+````markdown
+# Potluck Meals App
+
+A React application for managing potluck meals using Supabase as the backend database.
+
+## Features
+
+- View all potluck meals
+- Add new meals to the potluck
+- Manage beverages and utensils
+
+## Technologies Used
+
+- React
+- Supabase
+- JavaScript
+
+## Getting Started
+
+1. Clone this repository
+2. Install dependencies: `npm install`
+3. Set up your Supabase project
+4. Configure environment variables
+5. Run the development server: `npm run dev`
+
+## Project Structure
+
+```
+src/
+├── components/
+│   └── PotluckMeals.jsx
+├── utils/
+│   └── supabase.js
+└── App.jsx
+```
+````
+
+**Why create a README early?** This helps you document your project as you build it, making it easier to remember what you've done and share your work with others.
 
 ---
 
