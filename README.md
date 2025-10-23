@@ -38,3 +38,24 @@ This is a step-by-step tutorial project that shows how to:
 
 6. Bonus Challenge: use option/select tags for the enumerated kinds of dish: (entree, side, snack, etc...)
 
+7. Create another table and component for Beverages. Follow a similar pattern from the Meals
+
+8. Create another table and component for Utensils (paper plates, plastic cups, etc...). Decide on the columns yourself.
+
+9. Bonus Challenge: Create another table that you think would improve your app. Decide on the columns yourself.
+
+10. Style your app. Optionally use Bootstrap.
+
+11. Bonus Challenge: use conditional styling in your app.
+
+12. Bonus Challenge: use something other than list item tags for your items. Get creative!
+
+13. Bonus Challenge: break this up app into several more components with props.
+
+14. Extra Bonus Challenge: have an option to upload a file. Consider using Cloudinary and an "upload url". This will take some research.
+
+15. Add a Readme, and comment your code.
+
+Choose at least 2 challenges to complete.
+
+Be sure to commit after each step.
