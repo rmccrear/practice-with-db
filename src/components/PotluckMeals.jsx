@@ -24,6 +24,23 @@ export default function PotluckMeals() {
         <ul>
             {mealsDisplay}
         </ul>
+        <div>
+            <form>
+                <label>
+                    Meal: <input type="text" name="mealName" />
+                </label>
+                <label>
+                    Guest: <input type="text" name="guestName" />
+                </label>
+                <label>
+                    Serves: <input type="number" name="serves" />
+                </label>
+                <label>
+                    Kind of Dish (entree, side, snack): <input type="text" name="kind_of_dish" />
+                </label>
+                <button type="submit">Add Meal</button>
+            </form>
+        </div>
 
     </>
 }
