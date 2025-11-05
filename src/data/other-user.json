@@ -1,0 +1,7 @@
+{
+    "name": "Sammy Squirrel",
+    "email": "sammy@example.com",
+    "id": 7,
+    "admin": false,
+    "isActive": true
+}

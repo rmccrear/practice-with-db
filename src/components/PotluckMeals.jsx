@@ -1,14 +1,21 @@
 import { useState } from "react"
 import supabase from "../utils/supabase"
 
-export default function PotluckMeals() {
+export default function PotluckMeals({user}) {
+    // const {user} = props;
 
     const [meals, setMeals] = useState([])
+    // const a = useState([]) // 🤮
+    // const meals = a[0]
+    // const setMeals = a[1]
 
     async function handleFetchMeals() {
-        const result = await supabase.from("potluck_meals").select()
-        const data = result.data
+        const { data, error } = await supabase.from("potluck_meals").select().eq("user_id", user.id)
+        // const result = await supabase.from("potluck_meals").select().eq("user_id", user.id)
+        // const data = result.data
+        // const error = result.error;
         console.log(data);
+        console.log(error);
         setMeals(data);
     }
 
@@ -28,11 +35,12 @@ export default function PotluckMeals() {
             meal_name: mealName,
             guest_name: guestName,
             serves: serves,
-            kind_of_dish: kindOfDish
+            kind_of_dish: kindOfDish,
+            user_id: user.id
         }
         console.log(newMeal)
         await supabase.from("potluck_meals").insert(newMeal)
-        const response = await supabase.from("potluck_meals").select()
+        const response = await supabase.from("potluck_meals").select().eq("user_id", user.id)
         const data = response.data
         setMeals(data)
         event.target.elements.mealName.value = ""
@@ -43,7 +51,7 @@ export default function PotluckMeals() {
 
 
     return <>
-        <h1>Potluck meals</h1>
+        <h1>Potluck meals for {user ? user.name : "Guest"}</h1>
         <button onClick={handleFetchMeals}>Fetch Meals</button>
         <ul>
             {mealsDisplay}
