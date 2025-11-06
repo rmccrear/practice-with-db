@@ -59,3 +59,85 @@ This is a step-by-step tutorial project that shows how to:
 Choose at least 2 challenges to complete.
 
 Be sure to commit after each step.
+
+## Adding Users
+
+### Adding a user to Supabase manually
+
+Navigate to Authentication and then click "Add user" to add a Supabase user.
+
+![Adding a user Screenshot](./docs/user-04-add-user.png)
+
+### Adding a user_id column to your table.
+
+You must add a column with a Foreign Key to your table to "relate" the table to your user.
+
+* For the column name choose "user_id"
+* For the type choose `uuid`
+* Click "Add foreign key" and find the table we need to relate to.
+    * Select the schema "auth"
+    * Select the "users" table
+    * Select the column "id"
+    * Optionally, select "Cascade" for "Action if referenced row is removed" to delete the row if the user is deleted.
+
+![Select auth schema Screenshot](./docs/user-05-foreign-key-schema.png)
+![Select user table Screenshot](./docs/user-06-foreign-key-table.png)
+![Select id column Screenshot](./docs/user-07-foreign-key-user_id.png)
+![Select Cascade Screenshot](./docs/user-08-foreign-key-cascade.png)
+
+### Login in your user...
+
+View the docs for login in a user [here](https://supabase.com/docs/reference/javascript/auth-signinwithpassword).
+
+Save the user object in state. You will need it to access things like
+
+* `user.email`
+* `user.id`
+* `user.user_metadata`
+
+### Creating a row with a user_id
+
+To associate a row in your database to a user, simple include the user_id when you insert a new row.
+
+```javascript
+        const newMeal = {
+            meal_name: mealName,
+            guest_name: guestName,
+            serves: serves,
+            kind_of_dish: kindOfDish,
+            user_id: user.id /* include your user.id if you have one */
+        }
+        console.log(newMeal)
+        await supabase.from("potluck_meals").insert(newMeal)
+```
+
+### Selecting only your user's data
+
+Add a filter on `user_id` to only get your user's.
+
+```javascript
+    const response = await supabase.from("potluck_meals").select().eq("user_id", user.id);
+```
+
+### Optionally update your RLS Policy 
+
+Update your RLS Policy to only allow authenticated users to insert rows.
+
+![Update RLS Policy Screenshot](./docs/users-09-user_id-policy.png)
+
+### Viewing your auth.users table
+
+You can view your user table by selecting the auth schema, user table. But you can't edit this table. It is managed by Supabase.
+
+![Auth Schema Screenshot](./docs/user-01-auth-schema.png)
+
+![User Table Access Screenshot](./docs/user-02-user-table-access.png)
+
+![User Table](./docs/user-03-user-table.png)
+
+
+
+
+### Adding a user_id to your table.
+
+
