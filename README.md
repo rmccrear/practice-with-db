@@ -69,6 +69,13 @@ The project is organized into different branches that showcase various features:
 
 Each link above takes you directly to the `App.jsx` file in that branch, where you can see the progression of the implementation.
 
+### Login Examples (Optional)
+
+For examples of implementing user authentication:
+
+- **Simple Logins**: See the [`logins`](https://github.com/rmccrear/practice-with-db/tree/logins) branch for a basic login implementation
+- **Login Component with Callbacks**: See the [`login-component`](https://github.com/rmccrear/practice-with-db/tree/login-component) branch for a reusable login component that uses callback functions as props
+
 ## Learning Path
 
 1. Start with the `main` branch to understand the basic setup
