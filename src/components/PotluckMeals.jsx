@@ -10,7 +10,7 @@ export default function PotluckMeals({user}) {
     // const setMeals = a[1]
 
     async function handleFetchMeals() {
-        const { data, error } = await supabase.from("potluck_meals").select().eq("user_id", user.id)
+        const { data, error } = await supabase.from("potluck_meals").select().eq("user_id", user.id);
         // const result = await supabase.from("potluck_meals").select().eq("user_id", user.id)
         // const data = result.data
         // const error = result.error;
@@ -40,7 +40,7 @@ export default function PotluckMeals({user}) {
         }
         console.log(newMeal)
         await supabase.from("potluck_meals").insert(newMeal)
-        const response = await supabase.from("potluck_meals").select().eq("user_id", user.id)
+        const response = await supabase.from("potluck_meals").select()
         const data = response.data
         setMeals(data)
         event.target.elements.mealName.value = ""
@@ -51,7 +51,7 @@ export default function PotluckMeals({user}) {
 
 
     return <>
-        <h1>Potluck meals for {user ? user.name : "Guest"}</h1>
+        <h1>Potluck meals for {user ? user.email : "Guest"}</h1>
         <button onClick={handleFetchMeals}>Fetch Meals</button>
         <ul>
             {mealsDisplay}
