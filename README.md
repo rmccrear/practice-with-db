@@ -140,4 +140,13 @@ You can view your user table by selecting the auth schema, user table. But you c
 
 ### Adding a user_id to your table.
 
+---
+
+## Login Examples
+
+For examples of implementing user authentication:
+
+- **Simple Logins**: See the [`logins`](https://github.com/rmccrear/practice-with-db/tree/logins) branch for a basic login implementation
+- **Login Component with Callbacks**: See the [`login-component`](https://github.com/rmccrear/practice-with-db/tree/login-component) branch for a reusable login component that uses callback functions as props
+
 
