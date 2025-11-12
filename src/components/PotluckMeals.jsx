@@ -1,9 +1,11 @@
 import { useState } from "react"
 import supabase from "../utils/supabase"
+import { filterMealsByKind } from "../utils/filter-helpers"
 
-export default function PotluckMeals({user}) {
+export default function PotluckMeals({ user }) {
     // const {user} = props;
 
+    const [mealKind, setMealKind] = useState("all")
     const [meals, setMeals] = useState([])
     // const a = useState([]) // 🤮
     // const meals = a[0]
@@ -19,12 +21,14 @@ export default function PotluckMeals({user}) {
         setMeals(data);
     }
 
+    const filteredMeals = filterMealsByKind(meals, mealKind)
+
     const mealsDisplay = []
-    for (let i = 0; i < meals.length; i++) {
-        mealsDisplay.push(<li key={meals[i].id}> {meals[i].meal_name} by {meals[i].guest_name} serves {meals[i].serves} ( {meals[i].kind_of_dish} ) </li>)
+    for (let i = 0; i < filteredMeals.length; i++) {
+        mealsDisplay.push(<li key={filteredMeals[i].id}> {filteredMeals[i].meal_name} by {filteredMeals[i].guest_name} serves {filteredMeals[i].serves} ( {filteredMeals[i].kind_of_dish} ) </li>)
     }
 
-    async function handleAddMeal(event){
+    async function handleAddMeal(event) {
         event.preventDefault()
         console.log("handle add meal submitted")
         const mealName = event.target.elements.mealName.value
@@ -53,6 +57,9 @@ export default function PotluckMeals({user}) {
     return <>
         <h1>Potluck meals for {user ? user.name : "Guest"}</h1>
         <button onClick={handleFetchMeals}>Fetch Meals</button>
+        <button onClick={() => { setMealKind("entree") }}>Entrees</button>
+        <button onClick={() => { setMealKind("side") }}>Sides</button>
+        <button onClick={() => { setMealKind("all") }}>All</button>
         <ul>
             {mealsDisplay}
         </ul>
@@ -61,15 +68,15 @@ export default function PotluckMeals({user}) {
                 <label>
                     Meal: <input type="text" name="mealName" />
                 </label>
-                <br/>
+                <br />
                 <label>
                     Guest: <input type="text" name="guestName" />
                 </label>
-                <br/>
+                <br />
                 <label>
                     Serves: <input type="number" name="serves" />
                 </label>
-                <br/>
+                <br />
                 <label>
                     Kind of Dish:
                     <select name="kindOfDish" defaultValue="">
@@ -81,7 +88,7 @@ export default function PotluckMeals({user}) {
                         <option value="drink">Drink</option>
                     </select>
                 </label>
-                <br/>
+                <br />
                 <button type="submit">Add Meal</button>
             </form>
         </div>
